@@ -1,0 +1,4 @@
+- hosts: rudder
+  become: true
+  roles: 
+  - user-management

@@ -1,0 +1,30 @@
+- name: Add the user {{ username }} with a specific uid and a primary group of  sudo
+  ansible.builtin.user:
+    name: "{{ username }}"
+    comment: Devops Admin
+    uid: "{{ uid }}"
+    shell: "{{ shell_type }}"
+    password: "{{ password |password_hash('sha512')}}"
+    group: sudo
+    home: "{{ home }}"
+
+- name: Set up multiple authorized keys
+  ansible.posix.authorized_key:
+    user: "{{ username }}"
+    state: present
+    key: '{{ ssh_public_key }}'
+
+
+- name: Allow {{ username }} use sudo without password
+  ansible.builtin.blockinfile:
+    path: /etc/sudoers.d/sreadmin_sudoers
+    create: true
+    block: |
+      {{ username }} ALL=(ALL) NOPASSWD:ALL
+    mode: "0644"
+    state: present
+
+
+
+
+
