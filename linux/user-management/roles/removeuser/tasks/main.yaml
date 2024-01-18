@@ -1,0 +1,11 @@
+- name: Removing {{ username }} from  using sudo without password
+  ansible.builtin.file:
+    path: /etc/sudoers.d/sreadmin_sudoers
+    state: absent
+
+- name: Removing  existing user {{ username }}
+  ansible.builtin.user:
+    name: "{{ username }}"
+    state: absent
+    remove: yes
+

@@ -5,7 +5,8 @@
     uid: "{{ uid }}"
     shell: "{{ shell_type }}"
     password: "{{ password |password_hash('sha512')}}"
-    group: sudo
+    groups: sudo
+    append: true
     home: "{{ home }}"
 
 - name: Add ssh keys for the {{ username }}
@@ -13,7 +14,6 @@
     user: "{{ username }}"
     state: present
     key: '{{ ssh_public_key }}'
-
 
 - name: Allow {{ username }} to use sudo without password
   ansible.builtin.blockinfile:
@@ -23,6 +23,10 @@
       {{ username }} ALL=(ALL) NOPASSWD:ALL
     mode: "0644"
     state: present
+
+
+
+
 
 
 
