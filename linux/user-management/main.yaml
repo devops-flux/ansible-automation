@@ -1,4 +1,6 @@
 - hosts: rudder
   become: true
   roles:
+  - adduser
+  - generating-ssh-keys
   - removeuser
