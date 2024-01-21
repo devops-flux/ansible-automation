@@ -1,0 +1,6 @@
+- hosts: dbprod
+  roles:
+  - singledb
+  - singledbwithextraargs
+  - alldb
+  - alldbwithextraargs

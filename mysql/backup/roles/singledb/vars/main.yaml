@@ -1,0 +1,4 @@
+databasename: devdevopsfluxdb
+dbusername: devopsflux
+dbpassword: samplepassword
+dbhost: localhost

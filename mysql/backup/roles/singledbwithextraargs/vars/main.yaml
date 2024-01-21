@@ -1,0 +1,5 @@
+databasename: devdevopsfluxdb
+dbusername: devopsflux
+dbpassword: samplepassword
+dbhost: localhost
+extraargs: --lock-all-tables --set-gtid-purged=OFF
