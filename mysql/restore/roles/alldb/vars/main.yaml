@@ -1,0 +1,4 @@
+dbusername: devopsflux
+dbpassword: samplepassword
+dbhost: localhost
+dbfilename: alldb

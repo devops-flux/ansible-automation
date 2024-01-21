@@ -1,0 +1,25 @@
+- name: Installing prerequisite packages  python3-pip on Ubuntu  before restoring the database
+  apt:
+    name:
+    - python3-pip
+    - python3-mysqldb
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Installing  prerequisite pymysql dependencies  before restoring the database
+  ansible.builtin.pip:
+    name:
+    - pymysql
+
+- name: Restore all databases in mysql
+  community.mysql.mysql_db:
+    name: all
+    state: import
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    target: /home/zenadmin/backups/{{ ansible_date_time.date }}/{{dbfilename}}.sql
+    login_host: "{{ dbpassword }}"
+    login_user: "{{ dbusername }}"
+    login_password: "{{ dbpassword }}"
+
+
