@@ -1,0 +1,4 @@
+- name: Removing existing group {{ groupname }}
+  ansible.builtin.group:
+    name: "{{ groupname }}"
+    state: absent

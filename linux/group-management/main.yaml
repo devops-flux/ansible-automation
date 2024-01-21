@@ -1,0 +1,5 @@
+- hosts: rudder
+  become: true
+  roles:
+  - addgroup
+  - removegroup
